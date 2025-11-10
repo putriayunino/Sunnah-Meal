@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNNAH RECIPES</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Find Sunnah Recipe</h1>
+    <select id="ingredientInput">
+        <option value="">Choose Sunnah Ingredient</option>
+        <option value="dates">Dates</option>
+        <option value="honey">Honey</option>
+        <option value="milk">Milk</option>
+        <option value="olive oil">Olive Oil</option>
+        <option value="barley">Barley</option>
+        <option value="fig">Fig</option>
+        <option value="pomegranate">Pomegranate</option>
+    </select>
+    <button id="fetch-data">Search</button>
+    <pre id="data"></pre>
+    <a href="index.html" class="nav-link">Back</a>
+
+    <script>
+        const fetchDataButton = document.getElementById('fetch-data');
+        const dataDisplay = document.getElementById('data');
+
+        fetchDataButton.addEventListener('click', () => {
+            const ingredient = document.getElementById('ingredientInput').value.trim();
+            const apiKey = 'ef0573bb56a74296876afc306f1fcddd'
+            const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}` // Replace with your API URL
+
+            dataDisplay.textContent = `Fetching recipes for "${ingredient}"...`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if(!response.ok){
+                    throw new Error('Failed to fetch data');
+                }
+                return response.json();
+                })
+                
+                .then(data => {
+                    if (data.length === 0){
+                        dataDisplay.textContent = "No recipes found.";
+                        return;
+                    }
+
+                let output ='';
+                data.forEach(recipe => {
+                    output += `
+                    <div class = "recipe-card">
+                        <h3>🍴 ${recipe.title}</h3>git a
+                        <img src="${recipe.image}" alt="${recipe.title}" loading="lazy"/>
+                        <p>Used: ${recipe.usedIngredients.map(i => i.name).join(', ')}</p>
+                        <p>Missing: ${recipe.missedIngredients.map(i => i.name).join(', ')}</P>
+                        <button onclick='addToMealPlan(${JSON.stringify}({
+                        title: recipe.title,
+                        image:recipe.image,
+                        used:recipe.usedIngredients.map(i => i.name).join(", "),
+                        missing: recipe.missedIngredients.map(i => i.name).join(", ")}).replace(/"/g, "&quot;"}))'> Add to Meal Plan</button>
+                    </div>
+                    `;
+                });
+                dataDisplay.innerHTML = output;
+            })
+                .catch(error => {
+                    dataDisplay.textContent = 'Error: ' + error.message;
+                });
+        });
+
+        function addToMealPlan(mealName) {
+            const save = localStorage.getItem('sunnahMeals');
+            let items = saved? JSON.parse(saved):[];
+            items.push({name: mealName, eaten: false});
+            localStorage.setItem('sunnahMeals', JSON.stringify(items));
+            alert(`"${recipe.title}"added to your meal plan!`);
+        }
+        window.addEventListener('DomContentLoaded', () => {
+        const saved = localStorage.getItem('sunnahMeals');
+        if (saved) {
+            const items = JSON.parse(saved);
+            let output = '';
+            items.forEach(item => {
+                output += `<div class="recipe-card"><h3>${item.name}</h3></div>`;
+            });
+            document.getElementById('data').innerHTML = output;
+        }
+    });
+    </script>
+</body>
+</html>

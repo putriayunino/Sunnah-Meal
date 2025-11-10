@@ -1,0 +1,154 @@
+body{
+    font-style: italic;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    text-align: center;
+    color: #f5eeee;
+}
+
+h1{
+    text-align: center;
+}
+
+select, input{
+    padding: 6px;
+    width: 60%;
+    border:1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button{
+    padding: 6px 6px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: rgb(8, 128, 168);
+    color:white;
+}
+
+button:hover{
+    background-color: rgb(138, 198, 238);
+}
+form{
+    margin-bottom: 12px;
+}
+.recipe-container{
+    margin-top: 20px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card{
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.recipe-card img{
+    width: 50%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+#data {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 15px;
+  margin-top: 25px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 700px;
+  height: 320px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  text-align: left;
+  line-height: 1.5;
+  color: #222;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+li{
+    background: white;
+    margin-bottom: 8px;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+    text-align: left;
+    max-width: 500px;
+}
+
+.actions button{
+    margin-left: 6px;
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+.edit{
+    background-color: rgba(255, 183, 212, 0.8);
+    color: black;
+}
+
+.delete{
+    background-color: #ef4444;
+}
+
+.meal-item{
+    margin: 8px;
+    padding: 6px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-name{
+    font-weight: bold;
+}
+
+.status-select{
+    margin-left: 10px;
+    padding: 4px;
+}
+
+.eaten{
+    color: green;
+    text-decoration: line-through;
+}
+
+.not-eaten{
+    color: red;
+    padding: 12px;
+}
+.nav-link{
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: rgb(49, 106, 122);
+}
+
+.nav-link:hover{
+    text-decoration: underline;
+}
